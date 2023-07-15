@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Auth as AuthComponent, App as AppComponent } from "./components/intex";
+
+import { sendSocket, addSocketEvent, AuthContext, url } from './utils';
 import './App.scss';
-import { sendSocket, addSocketEvent, AuthContext } from './utils';
 
 function App() {
   const [socketAddress, setAddress] = useState('');
@@ -14,21 +16,26 @@ function App() {
     setUserId(data.id);
   });
 
-  sendSocket('login', {
-    "login": 'user',
-    "hash": 'x'
-  });
+  useEffect(() => {
+    sendSocket('login', {
+      "login": 'user',
+      "hash": 'x'
+    });
+
+    const params = new URLSearchParams();
+    params.append('username', 'user');
+    fetch(`http://${url}/isUsed/username?${params.toString()}`).then(respones => respones.json()).then(res => console.log("response:", res));
+  }, []);
+
 
   return (
     <AuthContext.Provider value={{
       socketAddress,
       userId
     }}>
-      <div>
-        {socketAddress}
-        <br></br>
-        {userId?.toString()}
-      </div>
+      {userId !== undefined ?
+        (<AppComponent />) :
+        (<AuthComponent />)}
     </AuthContext.Provider>
   );
 }
