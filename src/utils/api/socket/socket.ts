@@ -1,7 +1,10 @@
 import { socketListeners } from "./socketListeners";
+import { url } from "../";
+
+const newSocket = () => new WebSocket(`ws://${url}`);
 
 const recconectDelay = 60 * 1000;
-let socket = new WebSocket('ws://127.0.0.1:8080');
+let socket = newSocket();
 
 const defineSocket = () => {
   socket.addEventListener('open', (_) => {
@@ -22,7 +25,7 @@ const defineSocket = () => {
     console.log('WebSocket connection closed');
     setTimeout(() => {
       try {
-        socket = new WebSocket('ws://127.0.0.1:8080');
+        socket = newSocket();
         defineSocket();
       } catch (e) { }
     }, recconectDelay);
