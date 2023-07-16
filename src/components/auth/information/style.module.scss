@@ -1,0 +1,25 @@
+.main {
+  min-height: 100vh;
+}
+
+.header {
+  position: sticky;
+  min-height: 10vh;
+}
+
+.header hr {
+  border: none;
+  border-top: 1px solid lightgray;
+
+  width: 95%;
+
+  margin-top: 15px;
+}
+
+.section {
+  min-height: 90vh;
+}
+
+.footer {
+  min-height: 150px;
+}
