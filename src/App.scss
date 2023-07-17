@@ -1,8 +1,22 @@
+button,
+hr {
+  all: unset;
+}
+
+body * {
+  color: var(--text-color);
+  font-size: 1rem;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 hr {
   border: none;
   border-top: 1px solid var(--hr-color);
 
   width: 95%;
 
-  margin-top: 15px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
