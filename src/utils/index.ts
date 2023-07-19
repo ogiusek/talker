@@ -1,3 +1,4 @@
+export { toggleNightMode } from "./toggleNightMode";
 export { AuthContext } from './AuthContext';
 export {
   getSocket, sendSocket, addSocketEvent,
