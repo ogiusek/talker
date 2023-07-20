@@ -1,6 +1,9 @@
 function initNightMode() {
   const html = document.querySelector('html');
-  const mode = Number(localStorage.getItem('nightmode'));
+  const localStorageMode = localStorage.getItem('nightmode');
+  const mode = Number(localStorageMode ?? 1);
+
+  localStorageMode ?? localStorage.setItem('nightmode', '1');
 
   mode ?
     html?.setAttribute('nightmode', '') :

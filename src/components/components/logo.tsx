@@ -6,7 +6,7 @@ interface ILogoProps {
   text?: boolean
 }
 
-export function Logo({ width = '100px', height = '100px', text: showText = false }: ILogoProps) {
+export function Logo({ width = '100%', height = '100%', text: showText = false }: ILogoProps) {
   const viewBox = showText ? "0 0 300 200" : "0 0 100 100";
   return (<React.Fragment>
     <svg width={width} height={height} viewBox={viewBox}>
