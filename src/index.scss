@@ -14,16 +14,18 @@ code {
 
 :root {
   font-size: 16px;
+
+  --communicate-font: ;
+  --official-font: 'Arial',
+    sans-serif;
 }
 
 :root:not([nightmode]) {
   --main-color: #FFF;
   --accent-color: #EAEAEA;
 
-  --header-color: var(--main-color);
-  --section-color: var(--main-color);
-
   --text-color: #000;
+  --link-color: #222222;
 
   --hr-color: var(--accent-color);
 }
@@ -32,10 +34,8 @@ code {
   --main-color: #181818;
   --accent-color: #222222;
 
-  --header-color: var(--main-color);
-  --section-color: var(--main-color);
-
   --text-color: #FFF;
+  --link-color: #DADADA;
 
   --hr-color: var(--accent-color);
 }
