@@ -9,7 +9,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "stupid-react-router": "^1.2.10"
+    "stupid-react-router": "^1.2.14"
   },
   "scripts": {
     "start": "react-scripts start",
