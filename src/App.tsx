@@ -4,37 +4,51 @@ import {
   App as AppComponent
 } from "./components/intex";
 
-import { addSocketEvent, AuthContext, restUrl } from './utils';
+import { addSocketEvent, AuthContext } from './utils';
 import './App.scss';
+import { SetRefresher } from 'stupid-react-router';
 
 function App() {
+  const [refresher, setRefresher] = useState(false);
+
   const [socketAddress, setAddress] = useState('');
-  const [userId, setUserId] = useState<Number>();
-
-  addSocketEvent('address', data => {
-    setAddress(data.address);
-  });
-
-  addSocketEvent('login', data => {
-    setUserId(data.id);
-  });
+  const [userId, setUserId] = useState<Number>(-1);
 
   useEffect(() => {
-    const params = new URLSearchParams();
-    params.append('username', 'user');
-    fetch(`${restUrl}/isUsed/username?${params.toString()}`).then(respones => respones.json()).then(res => console.log("response:", res));
-  }, []);
+    addSocketEvent('address', data => {
+      setAddress(data.address);
+    });
 
+    addSocketEvent('login', data => {
+      if (data === false) {
+        localStorage.removeItem('login');
+        localStorage.removeItem('password');
+        // @ts-ignore
+        setUserId(-(Math.abs(userId) + 1));
+      } else {
+        setUserId(data.id);
+      }
+    });
+
+    addSocketEvent('error', data => {
+      console.log(data);
+    });
+  }, []);
 
   return (
     <AuthContext.Provider value={{
       socketAddress,
-      userId
+      userId,
+      setUserId,
+      refresh: () => { setRefresher(!refresher) }
     }}>
-      {userId !== undefined ?
+      <SetRefresher state={refresher} setState={setRefresher} />
+      {/* @ts-ignore */}
+      {((userId !== undefined || userId !== null) && (userId >= 0)) ?
         (<AppComponent />) :
-        (<AuthComponent />)}
+        (!localStorage.getItem('login') && <AuthComponent />)}
     </AuthContext.Provider>
   );
 }
+
 export default App;

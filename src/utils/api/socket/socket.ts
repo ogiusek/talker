@@ -9,6 +9,12 @@ let socket = newSocket();
 const defineSocket = () => {
   socket.addEventListener('open', (_) => {
     console.log('WebSocket connection established');
+    socket.send(JSON.stringify({
+      event: "login", data: {
+        "login": localStorage.getItem('login'),
+        "hash": localStorage.getItem('password')
+      }
+    }));
   });
 
   socket.addEventListener('message', (jsonData) => {
