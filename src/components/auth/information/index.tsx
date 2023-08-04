@@ -1,20 +1,27 @@
 import React from "react";
 import style from "./style.module.scss";
 
+import { Link } from "stupid-react-router";
+import { Main, Header, Section } from "../components";
+
 function Information() {
-  return (<main className={style['main']}>
-    <header className={style['header']}>
-      {/* talker logo */}
-      {/* login register dropdown */}
-      <hr />
-    </header>
-    <section className={style['section']}>
-      {/* why talker in <article>'s */}
-    </section>
-    <footer className={style['footer']}>
-      {/* contact */}
-    </footer>
-  </main>);
+  return (<Main>
+    <Header />
+    <Section className={style['section']}>
+      <article>
+        <h1>What is a Talker ?</h1>
+        <p>Talker is a straightforward and minimalistic communicator</p>
+      </article>
+      <article className={style['links']}>
+        <Link to="/auth/login/login" className={style['link-login']}>
+          Login
+        </Link>
+        <Link to="/auth/register/email" className={style['link-register']}>
+          Register
+        </Link>
+      </article>
+    </Section>
+  </Main>);
 }
 
 export { Information };
