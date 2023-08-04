@@ -1,25 +1,51 @@
-.main {
-  min-height: 100vh;
-}
-
-.header {
-  position: sticky;
-  min-height: 10vh;
-}
-
-.header hr {
-  border: none;
-  border-top: 1px solid lightgray;
-
-  width: 95%;
-
-  margin-top: 15px;
-}
-
 .section {
-  min-height: 90vh;
-}
+  article {
 
-.footer {
-  min-height: 150px;
+    max-width: 80vw;
+    width: 20rem;
+
+    margin: 2rem 0 1rem 0;
+
+    letter-spacing: normal;
+    text-align: center;
+    font-family: var(--official-font);
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      line-height: 3rem;
+    }
+
+    p {
+      font-size: 1rem;
+      filter: invert(10%);
+      font-weight: lighter;
+      line-height: 2rem;
+    }
+  }
+
+  .links {
+    margin-top: 3rem;
+    width: 19rem;
+    max-width: 70vw;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .link-register,
+    .link-login {
+      padding: 1rem;
+      font-size: 1rem;
+      color: var(--link-color);
+
+      text-decoration: underline;
+      transition: .1s;
+
+      &:hover {
+        filter: invert(20%);
+      }
+    }
+  }
 }

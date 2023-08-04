@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, redirect } from "stupid-react-router";
+import { Route, Switch, Redirect } from "stupid-react-router";
 
 import Login from "./login";
 import Register from "./register";
@@ -11,7 +11,7 @@ function Auth() {
     <Route path="/auth/register"><Register /></Route>
     <Route path="/auth"><Information /></Route>
 
-    <Route path="/">{redirect('/auth')}</Route>
+    <Route path="/"><Redirect to="/auth" /></Route>
   </Switch>);
 }
 
