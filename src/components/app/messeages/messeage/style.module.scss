@@ -1,0 +1,51 @@
+.messeage {
+  background-color: var(--accent-color);
+  list-style: none;
+
+  max-width: calc(70vw - 50px);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: .2rem 0;
+  position: relative;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  &.my {
+    margin-left: auto;
+  }
+
+  &.talker {
+    margin-right: auto;
+  }
+
+  .text {
+    word-wrap: break-word;
+    max-width: 100% !important;
+  }
+
+  &:hover {
+    .initDate {
+      display: block !important;
+    }
+  }
+
+  .initDate {
+    &:not(:hover) {
+      display: none;
+    }
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%);
+
+    z-index: 1;
+    width: 200px;
+    text-align: right;
+  }
+}
