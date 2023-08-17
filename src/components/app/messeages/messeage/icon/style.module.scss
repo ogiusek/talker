@@ -1,0 +1,33 @@
+.icon {
+  padding: .5rem;
+  height: 2rem;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover span {
+    display: block;
+  }
+
+
+  span {
+    &:hover {
+      display: block;
+    }
+
+    display: none;
+    position: absolute;
+    right: 0;
+    top: -1rem;
+  }
+
+  img {
+    *[nightmode] & {
+      filter: invert(100%);
+    }
+
+    max-height: 100%;
+  }
+}
