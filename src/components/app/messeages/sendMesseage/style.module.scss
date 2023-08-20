@@ -1,0 +1,57 @@
+.form {
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+
+  .input {
+    height: 2rem;
+    flex-grow: 1;
+    border-radius: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-size: 1rem;
+
+    input {
+      padding: .5rem 1rem;
+      border: none;
+      flex-grow: 1;
+      background-color: transparent;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      height: 100%;
+
+      img {
+        max-height: 100%;
+        padding: .2rem;
+
+        &:hover {
+          scale: 120%;
+        }
+
+        :root[nightmode] & {
+          filter: invert(100%);
+        }
+      }
+    }
+
+    &:focus {
+      filter: invert(3%);
+      border-radius: .5rem;
+    }
+  }
+}
