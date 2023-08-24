@@ -1,15 +1,18 @@
 import { socketListeners } from "./socketListeners";
 import { url } from "../";
 
-const newSocket = () => new WebSocket(`ws://${url}`);
+const reconnectDelay = 60 * 1000;
+const newSocket = (): WebSocket => {
+  return new WebSocket(`ws://${url}`);
+};
 
-const recconectDelay = 60 * 1000;
 let socket = newSocket();
 
-const defineSocket = () => {
-  socket.addEventListener('open', (_) => {
-    console.log('WebSocket connection established');
-    socket.send(JSON.stringify({
+const defineSocket = async () => {
+  const sock = socket;
+  sock.addEventListener('open', (_) => {
+    // console.log('WebSocket connection established');
+    sock.send(JSON.stringify({
       event: "login", data: {
         "login": localStorage.getItem('login'),
         "hash": localStorage.getItem('password')
@@ -17,9 +20,9 @@ const defineSocket = () => {
     }));
   });
 
-  socket.addEventListener('message', (jsonData) => {
+  sock.addEventListener('message', (jsonData) => {
     const rawData = JSON.parse(jsonData.data);
-    console.log(rawData);
+    // console.log(rawData);
     const eventName = rawData.event;
     const data = rawData.data;
     const eventHandler = socketListeners[eventName];
@@ -27,17 +30,18 @@ const defineSocket = () => {
     eventHandler && eventHandler(data);
   });
 
-  socket.addEventListener('close', (_) => {
-    console.log('WebSocket connection closed');
+  sock.addEventListener('close', (_) => {
+    // console.log('WebSocket connection closed');
     setTimeout(() => {
       try {
         socket = newSocket();
         defineSocket();
       } catch (e) { }
-    }, recconectDelay);
+    }, reconnectDelay);
   });
 
-  socket.addEventListener('error', (event) => {
+  sock.addEventListener('error', (event) => {
+    event.preventDefault();
     console.error('WebSocket error:', event);
   });
 }
@@ -45,13 +49,14 @@ const defineSocket = () => {
 defineSocket();
 
 const getSocket = async () => {
-  if (socket.readyState === WebSocket.OPEN) {
-    return socket;
+  const sock = socket;
+  if (sock.readyState === WebSocket.OPEN) {
+    return sock;
   } else {
     await new Promise((resolve) => {
-      socket.addEventListener('open', resolve);
+      sock.addEventListener('open', resolve);
     });
-    return socket;
+    return sock;
   }
 }
 

@@ -8,7 +8,7 @@ function sendSocket(event: string, data: any) {
     }
     send();
   } catch (err) {
-    console.log('errSend', err);
+    // console.log('errSend', err);
   }
 }
 
