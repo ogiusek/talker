@@ -1,0 +1,36 @@
+.sidebar {
+  height: 100%;
+  width: 150px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  position: relative;
+  backdrop-filter: invert(1%);
+  border-right: 1px solid var(--accent-color);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: .3s;
+
+  &.show * {
+    opacity: 1;
+  }
+
+  &.hide {
+    width: 0px;
+
+    &,
+    * {
+      opacity: 0;
+      font-size: 0 !important;
+    }
+  }
+
+  * {
+    flex-shrink: 1;
+    font-size: 1rem;
+    transition: .3s;
+  }
+}
