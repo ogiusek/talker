@@ -29,10 +29,6 @@ function App() {
         setUserId(data.id);
       }
     });
-
-    addSocketEvent('error', data => {
-      console.log(data);
-    });
   }, []);
 
   return (
